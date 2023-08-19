@@ -1,2 +1,6 @@
 ---
 # tasks file for bootstrap.general
+- name: FEDORA
+  ansible.builtin.import_tasks:
+    - fedora.yml
+  when: ansible_distribution == 'Fedora'
