@@ -1,0 +1,6 @@
+---
+- name: Converge
+  hosts: ansiblinux-fedora:38
+  gather_facts: true
+  roles:
+    - bootstrap.general

@@ -1,0 +1,5 @@
+---
+- name: Verify
+  hosts: fedora_38_test
+  become: true
+  tasks:
