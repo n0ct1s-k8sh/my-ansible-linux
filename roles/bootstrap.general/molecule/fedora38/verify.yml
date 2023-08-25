@@ -1,5 +1,9 @@
 ---
 - name: Verify
-  hosts: fedora_38_test
+  hosts: ansiblinux_fedora_38
   become: true
   tasks:
+    - name: Check if SystemD exists
+      ansible.builtin.file:
+        path: /usr/lib/systemd/systemd
+        state: file

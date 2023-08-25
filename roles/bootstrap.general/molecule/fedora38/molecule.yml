@@ -6,7 +6,7 @@ driver:
   name: docker
 
 platforms:
-  - name: fedora_38_testing
+  - name: ansiblinux_fedora_38
     image: ansiblinux-fedora:38
     pre_build_image: true
     privileged: true            # Needed for running SystemD with no permission errors
