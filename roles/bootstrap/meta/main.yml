@@ -1,6 +1,5 @@
 galaxy_info:
   author: n0ct1s-k8sh
-  namespace: bootstrap
   description: General & Essential Linux bootstraping role
 
   license: BSD-3-Clause
