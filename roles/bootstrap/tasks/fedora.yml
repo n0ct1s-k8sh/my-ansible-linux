@@ -30,3 +30,24 @@
   ansible.builtin.dnf:
     name: dnf-plugins-core
     state: present
+
+- name: (FEDORA) Install the Development Tools group
+  ansible.builtin.dnf:
+    name: '@Development Tools'
+    state: present
+
+- name: (FEDORA) Install system monitoring & info tools
+  ansible.builtin.dnf:
+    name: 
+      - htop
+      - neofetch
+      - s-tui
+      - inxi
+      - redhat-lsb-core
+      - hwinfo
+      - ethtool
+      - traceroute
+      - lm_sensors
+      - lshw
+      - hwdata
+    state: present
