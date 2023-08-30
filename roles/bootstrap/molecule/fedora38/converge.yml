@@ -3,4 +3,4 @@
   hosts: ansiblinux_fedora_38
   gather_facts: true
   roles:
-    - bootstrap.general
+    - bootstrap

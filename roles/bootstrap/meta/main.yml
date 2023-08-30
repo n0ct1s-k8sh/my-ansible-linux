@@ -1,4 +1,5 @@
 galaxy_info:
+  role_name: bootstrap
   author: n0ct1s-k8sh
   description: General & Essential Linux bootstraping role
 
