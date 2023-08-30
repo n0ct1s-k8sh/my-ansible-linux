@@ -1,6 +1,6 @@
 ---
 # general bootstrapping tasks file for Fedora hosts
-- name: DNF configuration
+- name: (FEDORA) DNF configuration
   ansible.builtin.lineinfile:
     path: /etc/dnf/dnf.conf
     line: "{{ item }}"
@@ -11,16 +11,16 @@
     - "deltarpm=True"                   # Enable DRPM for diff checking and lightweight downloads
     - "max_parallel_downloads=10"       # Set the maximum parallel downloads to 10
 
-- name: Update repo cache
+- name: (FEDORA) Update repo cache
   ansible.builtin.dnf:
     update_cache: true
 
-- name: Upgrade all packages
+- name: (FEDORA) Upgrade all packages
   ansible.builtin.dnf:
     name: "*"
     state: latest
 
-- name: Install dnf-plugins-core
+- name: (FEDORA) Install dnf-plugins-core
   ansible.builtin.dnf:
     name: dnf-plugins-core
     state: present
