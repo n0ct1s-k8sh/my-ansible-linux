@@ -10,7 +10,10 @@
 	"features": {
 		"ghcr.io/devcontainers/features/common-utils:2": {
 			"configureZshAsDefaultShell": true
-
+		},
+		"ghcr.io/devcontainers-contrib/features/zsh-plugins:0": {
+			"plugins": "git F-Sy-H zsh-autocomplete",
+			"omzPlugins": "https://github.com/z-shell/F-Sy-H https://github.com/marlonrichert/zsh-autocomplete"
 		},
 		"ghcr.io/devcontainers/features/docker-in-docker:2": {
 			"installDockerBuildx": true,
@@ -28,7 +31,8 @@
 				"ms-python.isort",
 				"redhat.vscode-yaml",
 				"redhat.ansible",
-				"eamodio.gitlens"
+				"eamodio.gitlens",
+				"GitHub.vscode-pull-request-github"
 			]
 		}
 	},
