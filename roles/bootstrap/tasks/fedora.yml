@@ -1,5 +1,10 @@
 ---
-# general bootstrapping tasks file for Fedora hosts
+# bootstrapping tasks file for Fedora hosts
+- name: (FEDORA) Clean DNF cache
+  ansible.builtin.command: /usr/bin/dnf clean all
+  tags:
+    - molecule-idempotence-notest
+
 - name: (FEDORA) DNF configuration
   ansible.builtin.lineinfile:
     path: /etc/dnf/dnf.conf
@@ -14,6 +19,7 @@
 - name: (FEDORA) Update repo cache
   ansible.builtin.dnf:
     update_cache: true
+    state: latest
 
 - name: (FEDORA) Upgrade all packages
   ansible.builtin.dnf:
