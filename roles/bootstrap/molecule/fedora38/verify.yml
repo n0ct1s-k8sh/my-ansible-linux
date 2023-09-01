@@ -3,12 +3,7 @@
   hosts: ansiblinux_fedora_38
   become: true
   tasks:
-    - name: Check if SystemD exists
-      ansible.builtin.file:
-        path: /usr/lib/systemd/systemd
-        state: file
-
-    - name: DNF configuration
+    - name: (FEDORA) DNF configuration
       ansible.builtin.lineinfile:
         path: /etc/dnf/dnf.conf
         line: "{{ item }}"
@@ -18,3 +13,36 @@
         - "fastestmirror=True"              # Automatically chooses the fastest mirror
         - "deltarpm=True"                   # Enable DRPM for diff checking and lightweight downloads
         - "max_parallel_downloads=10"       # Set the maximum parallel downloads to 10
+
+    - name: (FEDORA) Packages testing
+      block:
+        - name: (FEDORA - PKGS TEST) Gather package facts
+          ansible.builtin.package_facts:
+
+        - name: (FEDORA - PKGS TEST) Checking loop
+          ansible.builtin.debug:
+            msg: "{{ item }} package is installed"
+          loop:
+            - dnf-plugins-core
+            - git
+            - gcc
+            - make
+            - vim
+            - python3-pip
+            - htop
+            - ethtool
+            - lm_sensors
+            - wget
+            - curl
+            - nmap
+            - nmap-ncat
+            - ca-certificates
+            - acl
+            - tar
+            - zip
+            - unzip
+            - unar
+            - bzip2
+            - tar
+            - p7zip
+            - ntfs-3g

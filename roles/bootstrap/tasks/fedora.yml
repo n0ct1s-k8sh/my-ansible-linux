@@ -31,15 +31,21 @@
     name: dnf-plugins-core
     state: present
 
-- name: (FEDORA) Install the Development Tools group
+- name: (FEDORA) Install development and essential code tools
   ansible.builtin.dnf:
-    name: '@Development Tools'
+    name:
+      - git
+      - vim
+      - python3-pip
+      - '@development-tools'
+      - '@c-development'
     state: present
 
-- name: (FEDORA) Install system monitoring & info tools
+- name: (FEDORA) Install net, hardware, monitoring & info tools
   ansible.builtin.dnf:
     name: 
       - htop
+      - bpytop
       - neofetch
       - s-tui
       - inxi
@@ -50,4 +56,38 @@
       - lm_sensors
       - lshw
       - hwdata
+      - wget
+      - curl
+      - nmap
+      - nmap-ncat
+    state: present
+
+- name: (FEDORA) Install security tools
+  ansible.builtin.dnf:
+    name:
+      - ca-certificates
+      - acl
+      - gnupg
+    state: present
+
+- name: (FEDORA) Install file compression & packaging tools
+  ansible.builtin.dnf:
+    name:
+      - zip
+      - unzip
+      - lzma
+      - lzop
+      - lzip
+      - bzip2
+      - sharutils
+      - cabextract
+      - gzip
+      - tar
+      - p7zip
+      - p7zip-plugins
+    state: present
+
+- name: (FEDORA) Install ntfs-3g for NTFS filesystem support
+  ansible.builtin.dnf:
+    name: ntfs-3g
     state: present
