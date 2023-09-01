@@ -31,17 +31,14 @@
     name: dnf-plugins-core
     state: present
 
-- name: (FEDORA) Install the Development Tools group
-  ansible.builtin.dnf:
-    name: '@Development Tools'
-    state: present
-
 - name: (FEDORA) Install development and essential code tools
   ansible.builtin.dnf:
     name:
       - git
       - vim
       - python3-pip
+      - '@development-tools'
+      - '@c-development'
   state: present
 
 - name: (FEDORA) Install net, hardware, monitoring & info tools
