@@ -39,7 +39,7 @@
       - python3-pip
       - '@development-tools'
       - '@c-development'
-  state: present
+    state: present
 
 - name: (FEDORA) Install net, hardware, monitoring & info tools
   ansible.builtin.dnf:
