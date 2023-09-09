@@ -1,0 +1,5 @@
+---
+- name: Verify
+  hosts: ansiblinux_debian_12
+  become: true
+  tasks:
