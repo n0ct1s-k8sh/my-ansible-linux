@@ -23,7 +23,7 @@
       - firmware-linux
       - build-essential
       - git
-      - nvim
+      - neovim
       - apt-transport-https
       - curl
       - acl
