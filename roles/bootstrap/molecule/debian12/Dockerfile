@@ -5,7 +5,7 @@ USER root
 
 RUN DEBIAN_FRONTEND=noninteractive apt update
 
-RUN DEBIAN_FRONTEND=noninteractive apt install -y systemd systemd-sysv
+RUN DEBIAN_FRONTEND=noninteractive apt install -y systemd systemd-sysv python3-all sudo
 
 RUN DEBIAN_FRONTEND=noninteractive apt clean
 
