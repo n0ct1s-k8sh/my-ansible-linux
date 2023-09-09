@@ -1,0 +1,10 @@
+---
+# bootstrapping tasks file for Debian hosts
+- name: (DEBIAN) Deploy main APT repository config file
+  ansible.builtin.template:
+    src: templates/etc/apt/sources.list.j2
+    dest: /etc/apt/sources.list
+    mode: '0644'
+    owner: root
+    group: root
+    backup: true
