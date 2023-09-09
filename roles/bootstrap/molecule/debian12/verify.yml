@@ -16,3 +16,22 @@
         - 'deb-src http://deb.debian.org/debian {{ ansible_distribution_release }}-updates main contrib non-free non-free-firmware'
       register: apt_repo_test
       failed_when: apt_repo_test is changed
+
+    - name: (DEBIAN) Check if zram-generator config file is present
+      ansible.builtin.stat:
+        path: /etc/systemd/zram-generator.conf
+
+    - name: (DEBIAN) Check if some binaries are present
+      ansible.builtin.stat:
+        path: '{{ item }}'
+      loop:
+        - '/usr/bin/7z'
+        - '/usr/bin/rar'
+        - '/usr/bin/unrar'
+        - '/usr/bin/zip'
+        - '/usr/bin/unzip'
+        - '/usr/bin/htop'
+        - '/usr/bin/nvim'
+        - '/usr/bin/git'
+        - '/usr/sbin/dkms'
+        - '/usr/bin/ntfs-3g'
