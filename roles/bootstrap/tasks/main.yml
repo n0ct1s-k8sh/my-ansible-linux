@@ -4,3 +4,8 @@
   ansible.builtin.include_tasks:
     file: fedora.yml
   when: ansible_distribution == 'Fedora'
+
+- name: DEBIAN
+  ansible.builtin.include_tasks:
+    file: debian.yml
+  when: ansible_distribution == 'Debian'
