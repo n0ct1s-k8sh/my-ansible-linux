@@ -1,0 +1,58 @@
+---
+# pkg lists
+initial_pkgs:
+  debian:
+    - linux-headers-amd64
+    - dkms
+    - firmware-linux
+    - build-essential
+    - git
+    - gnupg
+    - neovim
+    - apt-transport-https
+    - curl
+    - acl
+    - python3-all
+
+net_pkgs:
+  debian:
+    - ethtool
+    - traceroute
+    - nmap
+    - ncat
+
+hw_pkgs:
+  debian:
+    - htop
+    - neofetch
+    - s-tui
+    - lm-sensors
+    - lsb-release
+    - lshw
+    - hwdata
+    - hwinfo
+    - inxi
+
+compressfile_pkgs:
+  debian:
+    - rar
+    - unrar
+    - zip
+    - unzip
+    - lzip
+    - lzop
+    - bzip2
+    - tar
+    - gzip
+    - lhasa
+    - lzma
+    - arj
+    - sharutils
+    - p7zip
+    - p7zip-full
+
+ntfs_pkg:
+  debian: ntfs-3g
+
+zram_pkg:
+  debian: systemd-zram-generator
