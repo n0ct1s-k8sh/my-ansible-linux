@@ -1,16 +1,25 @@
 ---
 # pkg lists
-dev_pkgs:
+initial_pkgs:
   debian:
     - linux-headers-amd64
     - dkms
     - firmware-linux
     - build-essential
     - git
+    - gnupg
     - neovim
     - apt-transport-https
     - curl
     - acl
+    - python3-all
+
+net_pkgs:
+  debian:
+    - ethtool
+    - traceroute
+    - nmap
+    - ncat
 
 hw_pkgs:
   debian:
@@ -34,6 +43,7 @@ compressfile_pkgs:
     - lzop
     - bzip2
     - tar
+    - gzip
     - lhasa
     - lzma
     - arj
