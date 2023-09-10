@@ -17,7 +17,12 @@
 
 - name: (DEBIAN) Install kernel headers, firmware, dkms, development tools and basic packages
   ansible.builtin.apt:
-    name: "{{ initial_pkgs.debian }}"
+    name: '{{ initial_pkgs.debian }}'
+    state: present
+
+- name: (DEBIAN) Install network tools
+  ansible.builtin.apt:
+    name: '{{ net_pkgs.debian }}'
     state: present
 
 - name: (DEBIAN) Install hardware info & monitoring tools
