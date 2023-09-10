@@ -17,7 +17,7 @@
 
 - name: (DEBIAN) Install kernel headers, firmware, dkms, development tools and basic packages
   ansible.builtin.apt:
-    name: "{{ dev_pkgs.debian }}"
+    name: "{{ initial_pkgs.debian }}"
     state: present
 
 - name: (DEBIAN) Install hardware info & monitoring tools
@@ -38,4 +38,11 @@
 - name: (DEBIAN) Install zRAM (systemd-zram-generator)
   ansible.builtin.apt:
     name: '{{ zram_pkg.debian }}'
+    state: present
+
+- name: (DEBIAN) Set swappiness value to {{ swappiness_value }}
+  ansible.posix.sysctl:
+    name: vm.swappiness
+    value: '{{ swappiness_value }}'
+    reload: true
     state: present
