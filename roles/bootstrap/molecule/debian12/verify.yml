@@ -3,35 +3,38 @@
   hosts: ansiblinux_debian_12
   become: true
   tasks:
+    - name: Var files load
+      block:
+        - name: Include specific testing vars
+          ansible.builtin.include_vars: vars.yml
+
+        - name: Include role vars
+          ansible.builtin.include_vars:
+            dir: ../../defaults/main
+
     - name: (DEBIAN) Check if main APT repo config is present
       ansible.builtin.apt_repository:
         repo: '{{ item }}'
         state: present
       loop:
-        - 'deb http://deb.debian.org/debian {{ ansible_distribution_release }} main contrib non-free non-free-firmware'
-        - 'deb-src http://deb.debian.org/debian {{ ansible_distribution_release }} main contrib non-free non-free-firmware'
-        - 'deb http://deb.debian.org/debian-security/ {{ ansible_distribution_release }}-security main contrib non-free non-free-firmware'
-        - 'deb-src http://deb.debian.org/debian-security/ {{ ansible_distribution_release }}-security main contrib non-free non-free-firmware'
-        - 'deb http://deb.debian.org/debian {{ ansible_distribution_release }}-updates main contrib non-free non-free-firmware'
-        - 'deb-src http://deb.debian.org/debian {{ ansible_distribution_release }}-updates main contrib non-free non-free-firmware'
+        - '{{ repo_content }}'
       register: apt_repo_test
       failed_when: apt_repo_test is changed
 
     - name: (DEBIAN) Check if zram-generator config file is present
       ansible.builtin.stat:
-        path: /etc/systemd/zram-generator.conf
+        path: '{{ zram_configfile }}'
 
     - name: (DEBIAN) Check if some binaries are present
       ansible.builtin.stat:
         path: '{{ item }}'
       loop:
-        - '/usr/bin/7z'
-        - '/usr/bin/rar'
-        - '/usr/bin/unrar'
-        - '/usr/bin/zip'
-        - '/usr/bin/unzip'
-        - '/usr/bin/htop'
-        - '/usr/bin/nvim'
-        - '/usr/bin/git'
-        - '/usr/sbin/dkms'
-        - '/usr/bin/ntfs-3g'
+        - '{{ bin_testing }}'
+
+    - name: (DEBIAN) Check if swappiness value is set to {{ swappiness_value }}
+      ansible.builtin.lineinfile:
+        path: /etc/sysctl.conf
+        regexp: 'vm.swappiness={{ swappiness_value }}'
+        state: present
+      register: sysctl_swappiness_test
+      failed_when: sysctl_swappiness_test is changed

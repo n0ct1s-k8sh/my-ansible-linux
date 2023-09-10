@@ -1,3 +1,4 @@
 ---
 # defaults file for bootstrap.general
 swappiness_value: 10
+zram_configfile: '/etc/systemd/zram-generator.conf'
