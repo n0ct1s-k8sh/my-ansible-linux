@@ -17,56 +17,25 @@
 
 - name: (DEBIAN) Install kernel headers, firmware, dkms, development tools and basic packages
   ansible.builtin.apt:
-    pkg:
-      - linux-headers-amd64
-      - dkms
-      - firmware-linux
-      - build-essential
-      - git
-      - neovim
-      - apt-transport-https
-      - curl
-      - acl
+    name: "{{ dev_pkgs.debian }}"
     state: present
 
 - name: (DEBIAN) Install hardware info & monitoring tools
   ansible.builtin.apt:
-    pkg:
-      - htop
-      - neofetch
-      - s-tui
-      - lm-sensors
-      - lsb-release
-      - lshw
-      - hwdata
-      - hwinfo
-      - inxi
+    name: '{{ hw_pkgs.debian }}'
     state: present
 
 - name: (DEBIAN) Install NTFS driver
   ansible.builtin.apt:
-    name: ntfs-3g
+    name: '{{ ntfs_pkg.debian }}'
     state: present
 
 - name: (DEBIAN) Install file compression tools and format support
   ansible.builtin.apt:
-    pkg:
-      - rar
-      - unrar
-      - zip
-      - unzip
-      - lzip
-      - lzop
-      - bzip2
-      - tar
-      - lhasa
-      - lzma
-      - arj
-      - sharutils
-      - p7zip
-      - p7zip-full
+    name: '{{ compressfile_pkgs.debian }}'
+    state: present
 
 - name: (DEBIAN) Install zRAM (systemd-zram-generator)
   ansible.builtin.apt:
-    name: systemd-zram-generator
+    name: '{{ zram_pkg.debian }}'
     state: present
