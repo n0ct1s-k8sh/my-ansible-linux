@@ -13,7 +13,7 @@ galaxy_info:
     - "38"
   - name: Debian
     versions:
-      - "12"
+    - "12"
  
   galaxy_tags: []
 
