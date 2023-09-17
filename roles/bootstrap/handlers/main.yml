@@ -1,2 +1,5 @@
 ---
 # handlers file for bootstrap.general
+- name: ZRAM
+  ansible.builtin.include_tasks:
+    file: zram.yml

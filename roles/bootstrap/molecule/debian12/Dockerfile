@@ -1,20 +1,19 @@
 # Build with: docker build -t ansiblinux:debian-12 .
 FROM debian:bookworm
 
-USER root
+LABEL maintainer="n0ct1s-k8sh <fco.tomas.ol@gmail.com>"
+LABEL build_date="2023-09-16"
+
+ENV container docker
 
 RUN DEBIAN_FRONTEND=noninteractive apt update
-
 RUN DEBIAN_FRONTEND=noninteractive apt install -y systemd systemd-sysv python3-all sudo
-
 RUN DEBIAN_FRONTEND=noninteractive apt clean
-
 RUN DEBIAN_FRONTEND=noninteractive apt autoclean
-
 RUN rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
+RUN rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 RUN cd /lib/systemd/system/sysinit.target.wants && rm $(ls | grep -v systemd-tmpfiles-setup)
-
 RUN rm -f /lib/systemd/system/multi-user.target.wants/* \
     /etc/systemd/system/*.wants/* \
     /lib/systemd/system/local-fs.target.wants/* \

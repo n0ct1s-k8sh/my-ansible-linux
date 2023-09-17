@@ -1,0 +1,13 @@
+---
+# zRAM config vars for zram-generator.conf
+# https://github.com/systemd/zram-generator/blob/main/man/zram-generator.conf.md
+zram:
+  kernel_module: 'zram'
+  package:
+    debian: 'systemd-zram-generator'
+  cfg_file: '/etc/systemd/zram-generator.conf'
+  device_name: 'zram0'
+  compression: 'lzo-rle'                         # /sys/block/zram0/comp_algorithm
+  filesystem: 'swap'
+  swap_priority: 100
+  size: 'min(ram / 2, 4096)'

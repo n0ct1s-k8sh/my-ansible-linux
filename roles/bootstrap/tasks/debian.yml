@@ -11,39 +11,35 @@
 
 - name: (DEBIAN) Upgrade all packages
   ansible.builtin.apt:
-    name: "*"
     update_cache: true
-    state: latest
+    upgrade: full
 
-- name: (DEBIAN) Install kernel headers, firmware, dkms, development tools and basic packages
-  ansible.builtin.apt:
-    name: '{{ initial_pkgs.debian }}'
-    state: present
+- name: (DEBIAN - pkgs) Install essential packages
+  block:
+    - name: (DEBIAN - pkgs) Install kernel headers, firmware, dkms, development tools and basic packages
+      ansible.builtin.apt:
+        name: '{{ initial_pkgs.debian }}'
+        state: present
 
-- name: (DEBIAN) Install network tools
-  ansible.builtin.apt:
-    name: '{{ net_pkgs.debian }}'
-    state: present
+    - name: (DEBIAN - pkgs) Install network tools
+      ansible.builtin.apt:
+        name: '{{ net_pkgs.debian }}'
+        state: present
 
-- name: (DEBIAN) Install hardware info & monitoring tools
-  ansible.builtin.apt:
-    name: '{{ hw_pkgs.debian }}'
-    state: present
+    - name: (DEBIAN - pkgs) Install hardware info & monitoring tools
+      ansible.builtin.apt:
+        name: '{{ hw_pkgs.debian }}'
+        state: present
 
-- name: (DEBIAN) Install NTFS driver
-  ansible.builtin.apt:
-    name: '{{ ntfs_pkg.debian }}'
-    state: present
+    - name: (DEBIAN - pkgs) Install NTFS driver
+      ansible.builtin.apt:
+        name: '{{ ntfs_pkg.debian }}'
+        state: present
 
-- name: (DEBIAN) Install file compression tools and format support
-  ansible.builtin.apt:
-    name: '{{ compressfile_pkgs.debian }}'
-    state: present
-
-- name: (DEBIAN) Install zRAM (systemd-zram-generator)
-  ansible.builtin.apt:
-    name: '{{ zram_pkg.debian }}'
-    state: present
+    - name: (DEBIAN - pkgs) Install file compression tools and format support
+      ansible.builtin.apt:
+        name: '{{ compressfile_pkgs.debian }}'
+        state: present
 
 - name: (DEBIAN) Set swappiness value to {{ swappiness_value }}
   ansible.posix.sysctl:
@@ -51,3 +47,27 @@
     value: '{{ swappiness_value }}'
     reload: true
     state: present
+
+- name: (DEBIAN - zRAM) zRAM installation & configuration
+  when: ansible_env.container is not defined                    # Excluded due to container testing environment known limitations
+  notify: "ZRAM"
+  block:
+    - name: (DEBIAN - zRAM) Check and load zRAM kernel module
+      community.general.modprobe:
+        name: '{{ zram.kernel_module }}'
+        persistent: present
+        state: present
+
+    - name: (DEBIAN - zRAM) Install zRAM (systemd-zram-generator)
+      ansible.builtin.apt:
+        name: '{{ zram.package.debian }}'
+        state: present
+
+    - name: (DEBIAN - zRAM) Deploy zRAM config file
+      ansible.builtin.template:
+        src: templates/etc/systemd/zram-generator.conf.j2
+        dest: '{{ zram.cfg_file }}'
+        mode: '0644'
+        owner: root
+        group: root
+        backup: true
