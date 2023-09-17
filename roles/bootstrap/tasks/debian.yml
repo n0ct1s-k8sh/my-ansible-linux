@@ -11,9 +11,8 @@
 
 - name: (DEBIAN) Upgrade all packages
   ansible.builtin.apt:
-    name: "*"
     update_cache: true
-    state: latest
+    upgrade: full
 
 - name: (DEBIAN - pkgs) Install essential packages
   block:
