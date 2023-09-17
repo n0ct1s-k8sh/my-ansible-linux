@@ -53,6 +53,3 @@ compressfile_pkgs:
 
 ntfs_pkg:
   debian: ntfs-3g
-
-zram_pkg:
-  debian: systemd-zram-generator

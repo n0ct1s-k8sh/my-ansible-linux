@@ -54,19 +54,19 @@
   block:
     - name: (DEBIAN - zRAM) Check and load zRAM kernel module
       community.general.modprobe:
-        name: zram
+        name: '{{ zram.kernel_module }}'
         persistent: present
         state: present
 
     - name: (DEBIAN - zRAM) Install zRAM (systemd-zram-generator)
       ansible.builtin.apt:
-        name: '{{ zram_pkg.debian }}'
+        name: '{{ zram.package.debian }}'
         state: present
 
     - name: (DEBIAN - zRAM) Deploy zRAM config file
       ansible.builtin.template:
         src: templates/etc/systemd/zram-generator.conf.j2
-        dest: /etc/systemd/zram-generator.conf
+        dest: '{{ zram.cfg_file }}'
         mode: '0644'
         owner: root
         group: root

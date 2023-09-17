@@ -2,7 +2,7 @@
 # handlers file for zRAM
 - name: Enable zRAM device
   ansible.builtin.systemd:
-    name: 'systemd-zram-setup@{{ zram_device }}'
+    name: 'systemd-zram-setup@{{ zram.device_name }}'
     enabled: true
     state: started
     daemon_reload: true

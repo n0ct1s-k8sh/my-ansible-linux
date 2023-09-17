@@ -1,6 +1,7 @@
 {
     "ansible.python.interpreterPath": "/usr/local/bin/python",
     "yaml.schemas": {
-        "https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/ansible.json#/$defs/tasks": "file:///workspaces/my-ansible-linux/roles/bootstrap/tasks/debian.yml"
+        "https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/ansible.json#/$defs/tasks": "file:///workspaces/my-ansible-linux/roles/bootstrap/tasks/debian.yml",
+        "https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/ansible.json#/$defs/playbook": "file:///workspaces/my-ansible-linux/test.yml"
     }
 }
