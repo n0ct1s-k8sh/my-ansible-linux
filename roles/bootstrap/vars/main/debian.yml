@@ -1,7 +1,7 @@
 ---
 # pkg lists
-initial_pkgs:
-  debian:
+debian_pkgs:
+  initial:
     - linux-headers-amd64
     - dkms
     - firmware-linux
@@ -13,16 +13,12 @@ initial_pkgs:
     - curl
     - acl
     - python3-all
-
-net_pkgs:
-  debian:
+  net:
     - ethtool
     - traceroute
     - nmap
     - ncat
-
-hw_pkgs:
-  debian:
+  hw:
     - htop
     - neofetch
     - s-tui
@@ -32,9 +28,7 @@ hw_pkgs:
     - hwdata
     - hwinfo
     - inxi
-
-compressfile_pkgs:
-  debian:
+  compressfile:
     - rar
     - unrar
     - zip
@@ -50,6 +44,7 @@ compressfile_pkgs:
     - sharutils
     - p7zip
     - p7zip-full
+  ntfs: ntfs-3g
 
-ntfs_pkg:
-  debian: ntfs-3g
+debian_zram:
+  cfg_file: '/etc/systemd/zram-generator.conf'

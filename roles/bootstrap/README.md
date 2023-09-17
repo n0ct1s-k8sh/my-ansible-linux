@@ -1,38 +1,63 @@
-Role Name
+bootstrap
 =========
-
-A brief description of the role goes here.
+This role manages the essential packages and configs to initialize a Linux environment.
 
 Requirements
 ------------
-
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+- For Debian hosts:
+  - `python3-apt` for the [ansible.builtin.apt](https://docs.ansible.com/ansible/8/collections/ansible/builtin/apt_module.html) module.
 
 Role Variables
 --------------
-
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
-
-Dependencies
-------------
-
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+### `defaults/main.yml`
+- Non-specific (`main.yml`):
+  - `swappiness_value` (int) -> `10`
+    - [Value for `vm.swappiness` sysctl parameter.](https://docs.kernel.org/admin-guide/sysctl/vm.html#swappiness)
+  - `zram` (list):
+    - `device_name` (str) -> `zram0`
+    - `compression` (str) -> `lzo-rle`
+      - [zRAM compression algorithm](https://www.kernel.org/doc/html/next/admin-guide/blockdev/zram.html#select-compression-algorithm).
+      - [zRAM size parameter `compression-algorithm`.](https://github.com/systemd/zram-generator/blob/main/man/zram-generator.conf.md#options)
+    - `swap_priority` (int) -> `100`
+      - [zRAM size parameter `swap-priority`.](https://github.com/systemd/zram-generator/blob/main/man/zram-generator.conf.md#options)
+    - `size` (str) -> `min(ram / 2, 4096)`
+      - [zRAM size parameter `zram-size`.](https://github.com/systemd/zram-generator/blob/main/man/zram-generator.conf.md#options)
+### `vars/main.yml`
+- `zram` (list):
+  - `package` (str) -> `systemd-zram-generator`
+    - [SystemD zRAM Generator package name.](https://packages.debian.org/systemd-zram-generator)
+  - `kernel_module` (str) -> `zram`
+    - [zRAM kernel module name.](https://www.kernel.org/doc/html/next/admin-guide/blockdev/zram.html)
+  - `filesystem` (str) -> `swap`
+    - [zRAM size parameter `fs-type`.](https://github.com/systemd/zram-generator/blob/main/man/zram-generator.conf.md#options)
+### Debian hosts vars (`vars/debian.yml`)
+- `debian_pkgs` (list):
+  - `initial` (list)
+    - Initial packages.
+  - `net` (list)
+    - Network tools.
+  - `hw` (list)
+    - Hardware tools.
+  - `compressfile` (list)
+    - Compressed files tools.
+  - `ntfs` (list)
+    - Support for the NTFS filesystem.
+- [`debian_zram`](https://wiki.debian.org/ZRam#systemd-zram-generator) (list):
+  - `cfg_file` (str) -> `/etc/systemd/zram-generator.conf`
+    - Debian default zram-generator config file path.
 
 Example Playbook
 ----------------
-
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
-
-    - hosts: servers
-      roles:
-         - { role: username.rolename, x: 42 }
+```
+- hosts: mymachine
+  roles:
+      - bootstrap
+```
 
 License
 -------
-
 BSD
 
 Author Information
 ------------------
-
 An optional section for the role authors to include contact information, or a website (HTML is not allowed).
