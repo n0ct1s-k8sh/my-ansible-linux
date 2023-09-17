@@ -18,27 +18,27 @@
   block:
     - name: (DEBIAN - pkgs) Install kernel headers, firmware, dkms, development tools and basic packages
       ansible.builtin.apt:
-        name: '{{ initial_pkgs.debian }}'
+        name: '{{ debian_pkgs.initial }}'
         state: present
 
     - name: (DEBIAN - pkgs) Install network tools
       ansible.builtin.apt:
-        name: '{{ net_pkgs.debian }}'
+        name: '{{ debian_pkgs.net }}'
         state: present
 
     - name: (DEBIAN - pkgs) Install hardware info & monitoring tools
       ansible.builtin.apt:
-        name: '{{ hw_pkgs.debian }}'
+        name: '{{ debian_pkgs.hw }}'
         state: present
 
     - name: (DEBIAN - pkgs) Install NTFS driver
       ansible.builtin.apt:
-        name: '{{ ntfs_pkg.debian }}'
+        name: '{{ debian_pkgs.ntfs }}'
         state: present
 
     - name: (DEBIAN - pkgs) Install file compression tools and format support
       ansible.builtin.apt:
-        name: '{{ compressfile_pkgs.debian }}'
+        name: '{{ debian_pkgs.compressfile }}'
         state: present
 
 - name: (DEBIAN) Set swappiness value to {{ swappiness_value }}
@@ -60,13 +60,13 @@
 
     - name: (DEBIAN - zRAM) Install zRAM (systemd-zram-generator)
       ansible.builtin.apt:
-        name: '{{ zram.package.debian }}'
+        name: '{{ zram.package }}'
         state: present
 
     - name: (DEBIAN - zRAM) Deploy zRAM config file
       ansible.builtin.template:
         src: templates/etc/systemd/zram-generator.conf.j2
-        dest: '{{ zram.cfg_file }}'
+        dest: '{{ debian_zram.cfg_file }}'
         mode: '0644'
         owner: root
         group: root

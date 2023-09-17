@@ -1,0 +1,9 @@
+---
+# vars file for bootstrap role
+
+# zRAM config vars for zram-generator.conf
+# https://github.com/systemd/zram-generator/blob/main/man/zram-generator.conf.md
+zram:
+  package: 'systemd-zram-generator'
+  kernel_module: 'zram'
+  filesystem: 'swap'

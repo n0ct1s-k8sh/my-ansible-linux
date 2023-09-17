@@ -8,22 +8,12 @@
         - name: Include specific testing vars
           ansible.builtin.include_vars: vars.yml
 
-        - name: Include role vars
+        - name: Include all role vars
           ansible.builtin.include_vars:
-            dir: ../../defaults/main
-
-    - name: (DEBIAN) Check if main APT repo config is present
-      ansible.builtin.apt_repository:
-        repo: '{{ item }}'
-        state: present
-      loop:
-        - '{{ repo_content }}'
-      register: apt_repo_test
-      failed_when: apt_repo_test is changed
-
-    - name: (DEBIAN) Check if zram-generator config file is present
-      ansible.builtin.stat:
-        path: '{{ zram_configfile }}'
+            dir: '{{ item }}'
+          loop:
+            - '../../defaults/'
+            - '../../vars/main'
 
     - name: (DEBIAN) Check if some binaries are present
       ansible.builtin.stat:

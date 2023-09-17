@@ -1,13 +1,5 @@
 ---
 # debian12 testing vars
-repo_content:
-  - 'deb http://deb.debian.org/debian {{ ansible_distribution_release }} main contrib non-free non-free-firmware'
-  - 'deb-src http://deb.debian.org/debian {{ ansible_distribution_release }} main contrib non-free non-free-firmware'
-  - 'deb http://deb.debian.org/debian-security/ {{ ansible_distribution_release }}-security main contrib non-free non-free-firmware'
-  - 'deb-src http://deb.debian.org/debian-security/ {{ ansible_distribution_release }}-security main contrib non-free non-free-firmware'
-  - 'deb http://deb.debian.org/debian {{ ansible_distribution_release }}-updates main contrib non-free non-free-firmware'
-  - 'deb-src http://deb.debian.org/debian {{ ansible_distribution_release }}-updates main contrib non-free non-free-firmware'
-
 bin_testing:
   initial:
     user:
