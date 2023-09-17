@@ -1,0 +1,5 @@
+---
+# zRAM config vars for zram-generator.conf
+zram_configfile: '/etc/systemd/zram-generator.conf'
+zram_device: 'zram0'
+zram_compression: 'lzo-rle'                         # /sys/block/zram0/comp_algorithm
