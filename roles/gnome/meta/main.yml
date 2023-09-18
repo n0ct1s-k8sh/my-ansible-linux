@@ -1,0 +1,17 @@
+galaxy_info:
+  role_name: gnome
+  author: n0ct1s-k8sh
+  description: GNOME Desktop Environment deployment
+
+  license: BSD-3-Clause
+
+  min_ansible_version: 2.15.3
+
+  platforms:
+  - name: Debian
+    versions:
+    - "bookworm"
+ 
+  galaxy_tags: []
+
+dependencies: []
