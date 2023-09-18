@@ -1,0 +1,22 @@
+---
+- name: Verify
+  hosts: ansiblinux_debian_12
+  become: true
+  tasks:
+    - name: Var files load
+      block:
+        - name: Include specific testing vars
+          ansible.builtin.include_vars: vars.yml
+
+        - name: Include all role vars
+          ansible.builtin.include_vars:
+            dir: '{{ item }}'
+          loop:
+            - '../../defaults/'
+            - '../../vars/main'
+
+    - name: (DEBIAN) Check if some binaries are present
+      ansible.builtin.stat:
+        path: '{{ item }}'
+      loop:
+        - '{{ bin_testing }}'
