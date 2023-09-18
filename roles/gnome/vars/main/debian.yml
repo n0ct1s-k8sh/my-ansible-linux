@@ -1,2 +1,53 @@
 ---
 # vars for Debian hosts
+debian_packages:
+  core:
+    - gnome-desktop3-data
+    - gnome-shell
+    - gnome-settings-daemon
+    - gnome-control-center
+    - gdm3
+    - gnome-session
+    - gnome-menus
+    - dconf
+    - dconf-editor
+    - gnome-bluetooth
+    - gnome-calculator
+    - gnome-keyring
+    - network-manager
+    - network-manager-gnome
+  canberra:
+    - libcanberra0
+    - libcanberra-gtk0
+    - libcanberra-gtk3-0
+    - libcanberra-gtk-module
+    - libcanberra-gtk3-module
+  utilities:
+    - file-roller
+    - nautilus
+    - nautilus-image-converter
+    - eog
+    - evince
+    - gnome-screenshot
+    - gnome-characters
+    - gnome-font-viewer
+  theming:
+    - gnome-themes-extra
+    - qt5-style-kvantum
+    - qt5-style-kvantum-l10n
+    - qt5-style-kvantum-themes
+  sound:
+    - wireplumber
+    - pipewire-oulse
+  extensions:
+    - gnome-tweaks
+    - gnome-shell-extensions
+    - chrome-gnome-shell
+    - gnome-shell-extension-appindicator
+    - gnome-shell-extension-bluetooth-quick-connect
+    - gnome-shell-extension-dashtodock
+    - gnome-shell-extension-freon
+    - gnome-shell-extension-hide-activities
+    - gnome-shell-extension-manager
+    - gnome-shell-extension-no-annoyance
+    - gnome-shell-extension-tiling-assistant
