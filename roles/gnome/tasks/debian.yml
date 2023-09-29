@@ -1,2 +1,6 @@
 ---
 # gnome tasks for Debian hosts
+- name: (DEBIAN) Install GNOME core packages
+  ansible.builtin.apt:
+    name: '{{ debian_packages["core"] }}'
+    state: present
