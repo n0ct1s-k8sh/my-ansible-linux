@@ -9,7 +9,7 @@ debian_packages:
     - gdm3
     - gnome-session
     - gnome-menus
-    - dconf
+    - libdconf1
     - dconf-editor
     - gnome-bluetooth
     - gnome-keyring
