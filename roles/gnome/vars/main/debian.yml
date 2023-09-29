@@ -20,6 +20,16 @@ debian_packages:
     - libcanberra-gtk3-0
     - libcanberra-gtk-module
     - libcanberra-gtk3-module
+  theming:
+    gtk:
+      - gnome-themes-extra
+    qt5:
+      - qt5-style-kvantum
+      - qt5-style-kvantum-l10n
+      - qt5-style-kvantum-themes
+  sound:
+    - wireplumber
+    - pipewire-pulse
   utilities:
     - file-roller
     - nautilus
@@ -30,16 +40,6 @@ debian_packages:
     - gnome-characters
     - gnome-font-viewer
     - gnome-calculator
-  theming:
-    gtk:
-      - gnome-themes-extra
-    qt:
-      - qt5-style-kvantum
-      - qt5-style-kvantum-l10n
-      - qt5-style-kvantum-themes
-  sound:
-    - wireplumber
-    - pipewire-pulse
   extensions:
     - gnome-tweaks
     - gnome-shell-extensions
