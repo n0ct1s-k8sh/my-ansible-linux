@@ -32,10 +32,12 @@ debian_packages:
     - gnome-font-viewer
     - gnome-calculator
   theming:
-    - gnome-themes-extra
-    - qt5-style-kvantum
-    - qt5-style-kvantum-l10n
-    - qt5-style-kvantum-themes
+    gtk:
+      - gnome-themes-extra
+    qt:
+      - qt5-style-kvantum
+      - qt5-style-kvantum-l10n
+      - qt5-style-kvantum-themes
   sound:
     - wireplumber
     - pipewire-oulse
