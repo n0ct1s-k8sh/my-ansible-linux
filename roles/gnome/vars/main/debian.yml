@@ -12,7 +12,6 @@ debian_packages:
     - dconf
     - dconf-editor
     - gnome-bluetooth
-    - gnome-calculator
     - gnome-keyring
     - network-manager
     - network-manager-gnome
@@ -31,6 +30,7 @@ debian_packages:
     - gnome-screenshot
     - gnome-characters
     - gnome-font-viewer
+    - gnome-calculator
   theming:
     - gnome-themes-extra
     - qt5-style-kvantum
