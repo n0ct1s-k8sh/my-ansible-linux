@@ -4,3 +4,26 @@
   ansible.builtin.apt:
     name: '{{ debian_packages["core"] }}'
     state: present
+
+- name: (DEBIAN) Install GTK & QT5 theming packages
+  ansible.builtin.apt:
+    name: '{{ item }}'
+    state: present
+  loop:
+    - '{{ debian_packages["theming"]["gtk"] }}'
+    - '{{ debian_packages["theming"]["qt5"] }}'
+
+- name: (DEBIAN) Install sound packages
+  ansible.builtin.apt:
+    name: '{{ debian_packages["sound"] }}'
+    state: present
+
+- name: (DEBIAN) Install GNOME utilities packages
+  ansible.builtin.apt:
+    name: '{{ debian_packages["utilities"] }}'
+    state: present
+
+- name: (DEBIAN) Install GNOME extension support and some builtin extensions
+  ansible.builtin.apt:
+    name: '{{ debian_packages["extensions"] }}'
+    state: present
