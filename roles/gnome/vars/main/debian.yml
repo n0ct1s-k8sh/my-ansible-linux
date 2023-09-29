@@ -15,7 +15,6 @@ debian_packages:
     - gnome-keyring
     - network-manager
     - network-manager-gnome
-  canberra:
     - libcanberra0
     - libcanberra-gtk0
     - libcanberra-gtk3-0
