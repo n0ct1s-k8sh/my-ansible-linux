@@ -40,7 +40,7 @@ debian_packages:
       - qt5-style-kvantum-themes
   sound:
     - wireplumber
-    - pipewire-oulse
+    - pipewire-pulse
   extensions:
     - gnome-tweaks
     - gnome-shell-extensions
