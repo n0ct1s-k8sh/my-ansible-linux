@@ -9,19 +9,27 @@ debian_packages:
     - gdm3
     - gnome-session
     - gnome-menus
-    - dconf
+    - libdconf1
     - dconf-editor
     - gnome-bluetooth
-    - gnome-calculator
     - gnome-keyring
     - network-manager
     - network-manager-gnome
-  canberra:
     - libcanberra0
     - libcanberra-gtk0
     - libcanberra-gtk3-0
     - libcanberra-gtk-module
     - libcanberra-gtk3-module
+  theming:
+    gtk:
+      - gnome-themes-extra
+    qt5:
+      - qt5-style-kvantum
+      - qt5-style-kvantum-l10n
+      - qt5-style-kvantum-themes
+  sound:
+    - wireplumber
+    - pipewire-pulse
   utilities:
     - file-roller
     - nautilus
@@ -31,14 +39,7 @@ debian_packages:
     - gnome-screenshot
     - gnome-characters
     - gnome-font-viewer
-  theming:
-    - gnome-themes-extra
-    - qt5-style-kvantum
-    - qt5-style-kvantum-l10n
-    - qt5-style-kvantum-themes
-  sound:
-    - wireplumber
-    - pipewire-oulse
+    - gnome-calculator
   extensions:
     - gnome-tweaks
     - gnome-shell-extensions

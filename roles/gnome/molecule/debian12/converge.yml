@@ -2,5 +2,11 @@
 - name: Converge
   hosts: ansiblinux_debian_12
   gather_facts: true
+  pre_tasks:
+    - name: (DEBIAN) Upgrade all packages
+      ansible.builtin.apt:
+        update_cache: true
+        upgrade: full
+
   roles:
-    - bootstrap
+    - gnome

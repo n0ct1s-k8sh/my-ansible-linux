@@ -12,8 +12,8 @@
 			"configureZshAsDefaultShell": true
 		},
 		"ghcr.io/devcontainers-contrib/features/zsh-plugins:0": {
-			"plugins": "git docker history F-Sy-H zsh-autocomplete",
-			"omzPlugins": "https://github.com/z-shell/F-Sy-H https://github.com/marlonrichert/zsh-autocomplete"
+			"plugins": "git ansible docker history F-Sy-H zsh-autosuggestions",
+			"omzPlugins": "https://github.com/z-shell/F-Sy-H https://github.com/zsh-users/zsh-autosuggestions"
 		},
 		"ghcr.io/devcontainers/features/docker-in-docker:2": {
 			"installDockerBuildx": true,
