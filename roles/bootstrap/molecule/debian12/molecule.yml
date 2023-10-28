@@ -9,7 +9,7 @@ platforms:
     image: ansiblinux:debian-12
     pre_build_image: true
     volumes:
-      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+      - /sys/fs/cgroup:/sys/fs/cgroup:rw
     tmpfs:
       - /run
       - /tmp
