@@ -1,11 +1,5 @@
 ---
-# tasks file for bootstrap role
-- name: FEDORA
-  ansible.builtin.include_tasks:
-    file: fedora.yml
-  when: ansible_distribution == 'Fedora'
-
-- name: DEBIAN
+- name: Call tasks for Debian host
   ansible.builtin.include_tasks:
     file: debian.yml
   when: ansible_distribution == 'Debian'

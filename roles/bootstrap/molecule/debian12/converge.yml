@@ -1,6 +1,6 @@
 ---
 - name: Converge
-  hosts: ansiblinux_debian_12
+  hosts: all
   gather_facts: true
   roles:
     - bootstrap

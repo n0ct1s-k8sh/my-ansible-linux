@@ -1,6 +1,6 @@
 ---
 - name: Verify
-  hosts: ansiblinux_debian_12
+  hosts: all
   become: true
   tasks:
     - name: Var files load
