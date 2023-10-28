@@ -12,7 +12,7 @@ net_packages:
 hw_monitor_packages:
   - htop
   - neofetch
-  - s-tuir
+  - s-tui
   - lm-sensors
   - lsb-release
   - lshw

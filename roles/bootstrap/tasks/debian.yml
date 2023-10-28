@@ -24,10 +24,11 @@
 
 - name: (DEBIAN - pkgs) Install network tools
   ansible.builtin.apt:
-    name:
-      - "{{ net_packages }}"
-      - "{{ debian_pkgs['net'] }}"
+    name: "{{ item }}"
     state: present
+  loop:
+    - "{{ net_packages }}"
+    - "{{ debian_pkgs['net'] }}"
 
 - name: (DEBIAN - pkgs) Install hardware info & monitoring tools
   ansible.builtin.apt:
@@ -41,10 +42,11 @@
 
 - name: (DEBIAN - pkgs) Install file compression tools and format support
   ansible.builtin.apt:
-    name:
-      - "{{ compression_packages }}"
-      - "{{ debian_pkgs['compression'] }}"
+    name: "{{ item }}"
     state: present
+  loop:
+    - "{{ compression_packages }}"
+    - "{{ debian_pkgs['compression'] }}"
 
 - name: (DEBIAN) Set swappiness value to "{{ swappiness_value }}"
   ansible.posix.sysctl:
