@@ -8,12 +8,15 @@
 		"ANSIBLE_CONFIG": "/workspaces/my-ansible-linux/ansible.cfg"
 	},
 	"features": {
+		"ghcr.io/devcontainers-contrib/features/apt-packages:1": {
+			"packages": "fzf"
+		},
 		"ghcr.io/devcontainers/features/common-utils:2": {
 			"configureZshAsDefaultShell": true
 		},
 		"ghcr.io/devcontainers-contrib/features/zsh-plugins:0": {
-			"plugins": "git ansible docker history F-Sy-H zsh-autosuggestions",
-			"omzPlugins": "https://github.com/z-shell/F-Sy-H https://github.com/zsh-users/zsh-autosuggestions"
+			"plugins": "git ansible docker history F-Sy-H zsh-autosuggestions fzf-zsh-plugin",
+			"omzPlugins": "https://github.com/z-shell/F-Sy-H https://github.com/zsh-users/zsh-autosuggestions https://github.com/unixorn/fzf-zsh-plugin"
 		},
 		"ghcr.io/devcontainers/features/docker-in-docker:2": {
 			"installDockerBuildx": true,
