@@ -9,7 +9,7 @@ These dockerfiles are used for testing each role in a Docker container. It is re
 - They can be used in a Docker-in-Docker devcontainer for a perfect isolated dev environment.
 
 ## Usage
-- First build the image: `docker build --no-cache -t ansibilinux:distro-VERSION -f distroVERSION.Dockerfile .`
+- First build the image: `docker build --no-cache -t ansiblinux:distro-VERSION -f distro-VERSION.Dockerfile .`
 - Run with the following flags (already defined in the `molecule.yml` manifest):
     - ``
 
