@@ -1,50 +1,16 @@
 ---
-# pkg lists
 debian_pkgs:
   initial:
     - linux-headers-amd64
     - dkms
     - firmware-linux
-    - build-essential
-    - git
-    - gnupg
-    - neovim
     - apt-transport-https
-    - curl
-    - acl
     - python3-all
+    - build-essential
   net:
-    - ethtool
-    - traceroute
-    - nmap
     - ncat
-  hw:
-    - htop
-    - neofetch
-    - s-tui
-    - lm-sensors
-    - lsb-release
-    - lshw
-    - hwdata
-    - hwinfo
-    - inxi
-  compressfile:
+  compression:
     - rar
     - unrar
-    - zip
-    - unzip
-    - lzip
-    - lzop
-    - bzip2
-    - tar
-    - gzip
-    - lhasa
-    - lzma
-    - arj
-    - sharutils
     - p7zip
     - p7zip-full
-  ntfs: ntfs-3g
-
-debian_zram:
-  cfg_file: '/etc/systemd/zram-generator.conf'

@@ -1,4 +1,3 @@
-# Build with: docker build -t ansiblinux:debian-12 .
 FROM debian:bookworm
 
 LABEL maintainer="n0ct1s-k8sh <fco.tomas.ol@gmail.com>"
@@ -12,7 +11,6 @@ RUN DEBIAN_FRONTEND=noninteractive apt clean
 RUN DEBIAN_FRONTEND=noninteractive apt autoclean
 RUN rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-RUN rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 RUN cd /lib/systemd/system/sysinit.target.wants && rm $(ls | grep -v systemd-tmpfiles-setup)
 RUN rm -f /lib/systemd/system/multi-user.target.wants/* \
     /etc/systemd/system/*.wants/* \
@@ -24,4 +22,5 @@ RUN rm -f /lib/systemd/system/multi-user.target.wants/* \
     /lib/systemd/system/plymouth* \
     /lib/systemd/system/systemd-update-utmp*
 
+VOLUME [ "/sys/fs/cgroup" ]
 ENTRYPOINT [ "/lib/systemd/systemd" ]

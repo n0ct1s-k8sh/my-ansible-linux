@@ -10,41 +10,30 @@ Requirements
 Role Variables
 --------------
 ### `defaults/main.yml`
-- Non-specific (`main.yml`):
-  - `swappiness_value` (int) -> `10`
-    - [Value for `vm.swappiness` sysctl parameter.](https://docs.kernel.org/admin-guide/sysctl/vm.html#swappiness)
-  - `zram` (list):
-    - `device_name` (str) -> `zram0`
-    - `compression` (str) -> `lzo-rle`
-      - [zRAM compression algorithm](https://www.kernel.org/doc/html/next/admin-guide/blockdev/zram.html#select-compression-algorithm).
-      - [zRAM size parameter `compression-algorithm`.](https://github.com/systemd/zram-generator/blob/main/man/zram-generator.conf.md#options)
-    - `swap_priority` (int) -> `100`
-      - [zRAM size parameter `swap-priority`.](https://github.com/systemd/zram-generator/blob/main/man/zram-generator.conf.md#options)
-    - `size` (str) -> `min(ram / 2, 4096)`
-      - [zRAM size parameter `zram-size`.](https://github.com/systemd/zram-generator/blob/main/man/zram-generator.conf.md#options)
-### `vars/main.yml`
-- `zram` (list):
-  - `package` (str) -> `systemd-zram-generator`
-    - [SystemD zRAM Generator package name.](https://packages.debian.org/systemd-zram-generator)
-  - `kernel_module` (str) -> `zram`
-    - [zRAM kernel module name.](https://www.kernel.org/doc/html/next/admin-guide/blockdev/zram.html)
-  - `filesystem` (str) -> `swap`
-    - [zRAM size parameter `fs-type`.](https://github.com/systemd/zram-generator/blob/main/man/zram-generator.conf.md#options)
-### Debian hosts vars (`vars/debian.yml`)
+- Vars for zRAM:
+  - `swappiness_value` (int): [Value for `vm.swappiness` sysctl parameter.](https://docs.kernel.org/admin-guide/sysctl/vm.html#swappiness)
+  - `zram_device_name` (str): Name for zRAM device.
+  - `zram_compression` (str): [Compression algorithm](https://www.kernel.org/doc/html/next/admin-guide/blockdev/zram.html#select-compression-algorithm).
+  - `zram_priority` (int): Swap priority.
+  - `zram_minimal_size` (str): Minimal size parameter in `min(ram / 2, x)`.
+
+### `vars/main/main.yml`
+- Vars for common packages across distributions:
+  - `dev_packages` (list): Set of development tools.
+  - `net_packages` (list): Set of network tools.
+  - `hw_monitor_packages` (list): Set of hardware monitoring and system info tools.
+  - `compression_packages` (list): Set of file compression tools.
+
+- Vars for zRAM:
+  - `zram_filesystem` (str): `fs-type` parameter.
+  - `zram-config-file` (str): zRAM generator config file path.
+
+### Debian hosts specific vars (`vars/main/debian.yml`)
 - `debian_pkgs` (list):
-  - `initial` (list)
-    - Initial packages.
-  - `net` (list)
-    - Network tools.
-  - `hw` (list)
-    - Hardware tools.
-  - `compressfile` (list)
-    - Compressed files tools.
-  - `ntfs` (list)
-    - Support for the NTFS filesystem.
-- [`debian_zram`](https://wiki.debian.org/ZRam#systemd-zram-generator) (list):
-  - `cfg_file` (str) -> `/etc/systemd/zram-generator.conf`
-    - Debian default zram-generator config file path.
+  - `initial` (list): Most important packages to install.
+  - `net` (list): Set of network tools.
+  - `compression` (list): Set of file compression tools.
+
 
 Example Playbook
 ----------------
@@ -56,8 +45,4 @@ Example Playbook
 
 License
 -------
-BSD
-
-Author Information
-------------------
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
+BSD-3-Clause

@@ -2,21 +2,22 @@
 role_name_check: 1
 dependency:
   name: galaxy
-
 driver:
   name: docker
-
 platforms:
-  - name: ansiblinux_debian_12
+  - name: ansiblinux-debian-12
     image: ansiblinux:debian-12
     pre_build_image: true
-    privileged: true            # Needed for running SystemD with no permission errors
-
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+    tmpfs:
+      - /run
+      - /tmp
+    privileged: true
 provisioner:
   name: ansible
   env:
     ANSIBLE_CONFIG: /workspaces/my-ansible-linux/ansible.cfg
-
 verifier:
   name: ansible
   env:

@@ -1,9 +1,37 @@
 ---
-# vars file for bootstrap role
+dev_packages:
+  - git
+  - gnupg
+  - neovim
+  - curl
+  - acl
+net_packages:
+  - ethtool
+  - traceroute
+  - nmap
+hw_monitor_packages:
+  - htop
+  - neofetch
+  - s-tuir
+  - lm-sensors
+  - lsb-release
+  - lshw
+  - hwdata
+  - hwinfo
+  - inxi
+compression_packages:
+  - zip
+  - unzip
+  - lzip
+  - lzop
+  - bzip2
+  - tar
+  - gzip
+  - lhasa
+  - lzma
+  - arj
+  - sharutils
 
-# zRAM config vars for zram-generator.conf
 # https://github.com/systemd/zram-generator/blob/main/man/zram-generator.conf.md
-zram:
-  package: 'systemd-zram-generator'
-  kernel_module: 'zram'
-  filesystem: 'swap'
+zram_filesystem: swap
+zram_config_file: /etc/systemd/zram-generator.conf
