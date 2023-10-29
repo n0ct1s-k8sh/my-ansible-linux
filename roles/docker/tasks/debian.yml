@@ -19,3 +19,8 @@
     filename: docker
     update_cache: true
     state: present
+
+- name: (DEBIAN) Install Docker packages
+  ansible.builtin.apt:
+    name: "{{ docker_packages }}"
+    state: present
