@@ -1,0 +1,5 @@
+---
+- name: Call tasks for Debian host
+  ansible.builtin.include_tasks:
+    file: debian.yml
+  when: ansible_distribution == 'Debian'

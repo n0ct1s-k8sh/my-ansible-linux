@@ -1,0 +1,20 @@
+---
+role_name_check: 1
+dependency:
+  name: galaxy
+driver:
+  name: docker
+platforms:
+  - name: ansiblinux-debian-12
+    image: ansiblinux:debian-12
+    pre_build_image: true
+    privileged: true
+provisioner:
+  name: ansible
+  env:
+    ANSIBLE_CONFIG: /workspaces/my-ansible-linux/ansible.cfg
+    # ANSIBLE_VERBOSITY: 3
+verifier:
+  name: ansible
+  env:
+    ANSIBLE_CONFIG: /workspaces/my-ansible-linux/ansible.cfg
