@@ -1,1 +1,21 @@
 ---
+- name: (DEBIAN) Ensure that APT keyrings directory exists
+  ansible.builtin.file:
+    path: /etc/apt/keyrings
+    owner: root
+    group: root
+    mode: '0755'
+    state: directory
+
+- name: (DEBIAN) Fetch repo key
+  ansible.builtin.apt_key:
+    url: "{{ docker_repo_key_url['debian'] }}"
+    keyring: "{{ docker_repo_key_file['debian'] }}"
+    state: present
+
+- name: (DEBIAN) Add Docker repo
+  ansible.builtin.apt_repository:
+    repo: "deb [arch={{ ansible_architecture }} signed-by={{ docker_repo_key_file['debian'] }}] {{ docker_repo_url['debian'] }} {{ ansible_distribution_release }} stable"
+    filename: docker
+    update_cache: true
+    state: present

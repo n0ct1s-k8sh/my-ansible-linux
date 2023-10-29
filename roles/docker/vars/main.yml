@@ -5,3 +5,9 @@ docker_repo_key_url:
   debian: https://download.docker.com/linux/debian/gpg
 docker_repo_key_file:
   debian: /etc/apt/keyrings/docker.gpg
+docker_packages:
+  - docker-ce
+  - docker-ce-cli
+  - containerd.io
+  - docker-buildx-plugin
+  - docker-compose-plugin
