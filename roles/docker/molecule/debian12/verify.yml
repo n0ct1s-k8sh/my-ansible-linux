@@ -1,0 +1,14 @@
+---
+- name: Verify
+  hosts: all
+  become: true
+  tasks:
+    - name: (DEBIAN) Gather services
+      ansible.builtin.service_facts:
+
+    - name: (DEBIAN) Check if Docker daemon exists
+      ansible.builtin.assert:
+        that:
+          - "'docker.service' in services"
+        fail_msg: "Docker daemon not installed :("
+        success_msg: "Docker daemon installed!!!"
