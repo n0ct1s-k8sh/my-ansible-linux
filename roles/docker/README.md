@@ -14,6 +14,12 @@ Role Variables
 
 
 
+Dependencies
+------------
+
+- [**bootstrap role**](../bootstrap)
+
+
 Example Playbook
 ----------------
 
