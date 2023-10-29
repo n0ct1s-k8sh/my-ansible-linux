@@ -1,2 +1,6 @@
 ---
 # vars file for docker
+docker_repo:
+  debian: https://download.docker.com/linux/debian
+docker_repo_key:
+  debian: https://download.docker.com/linux/debian/gpg
