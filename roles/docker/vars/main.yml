@@ -1,5 +1,7 @@
 ---
-docker_repo:
+docker_repo_url:
   debian: https://download.docker.com/linux/debian
-docker_repo_key:
+docker_repo_key_url:
   debian: https://download.docker.com/linux/debian/gpg
+docker_repo_key_file:
+  debian: /etc/apt/keyrings/docker.gpg
