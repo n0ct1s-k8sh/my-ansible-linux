@@ -9,3 +9,8 @@ galaxy_info:
   - name: Debian
     versions:
     - "bookworm"
+  galaxy_tags:
+    - "bootstrap"
+    - "bootstrapping"
+    - "linux"
+dependencies: []
