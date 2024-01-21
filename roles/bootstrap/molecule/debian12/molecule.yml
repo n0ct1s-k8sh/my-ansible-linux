@@ -18,8 +18,8 @@ platforms:
 provisioner:
   name: ansible
   env:
-    ANSIBLE_CONFIG: /workspaces/my-ansible-linux/ansible.cfg
+    ANSIBLE_CONFIG: ${MOLECULE_PROJECT_DIRECTORY}/../../ansible.cfg
 verifier:
   name: ansible
   env:
-    ANSIBLE_CONFIG: /workspaces/my-ansible-linux/ansible.cfg
+    ANSIBLE_CONFIG: ${MOLECULE_PROJECT_DIRECTORY}/../../ansible.cfg

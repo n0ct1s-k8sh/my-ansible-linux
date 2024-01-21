@@ -11,7 +11,7 @@ Role Variables
 --------------
 ### `defaults/main.yml`
 - Vars for zRAM:
-  - `swappiness_value` (int): [Value for `vm.swappiness` sysctl parameter.](https://docs.kernel.org/admin-guide/sysctl/vm.html#swappiness)
+  - `swappiness` (int): [Value for `vm.swappiness` sysctl parameter.](https://docs.kernel.org/admin-guide/sysctl/vm.html#swappiness)
   - `zram_device_name` (str): Name for zRAM device.
   - `zram_compression` (str): [Compression algorithm](https://www.kernel.org/doc/html/next/admin-guide/blockdev/zram.html#select-compression-algorithm).
   - `zram_priority` (int): Swap priority.
@@ -19,10 +19,10 @@ Role Variables
 
 ### `vars/main/main.yml`
 - Vars for common packages across distributions:
-  - `dev_packages` (list): Set of development tools.
-  - `net_packages` (list): Set of network tools.
-  - `hw_monitor_packages` (list): Set of hardware monitoring and system info tools.
-  - `compression_packages` (list): Set of file compression tools.
+  - `pkgs_base` (list): Set of development tools.
+  - `pkgs_net` (list): Set of network tools.
+  - `pkgs_hwmon` (list): Set of hardware monitoring and system info tools.
+  - `pkgs_compr` (list): Set of file compression tools.
 
 - Vars for zRAM:
   - `zram_filesystem` (str): `fs-type` parameter.

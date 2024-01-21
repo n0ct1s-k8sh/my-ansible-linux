@@ -1,6 +1,3 @@
 ---
-swappiness_value: 10
-zram_device: zram0
+swappiness: 10
 zram_compression: lzo-rle
-zram_priority: 100
-zram_minimal_size: 8192

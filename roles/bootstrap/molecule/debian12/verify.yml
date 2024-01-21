@@ -16,12 +16,12 @@
       ansible.builtin.stat:
         path: '{{ item }}'
       loop:
-        - '{{ bin_testing }}'
+        - '{{ pkg_bins }}'
 
-    - name: (DEBIAN) Check if swappiness value is set to {{ swappiness_value }}
+    - name: (DEBIAN) Check if swappiness value is set to {{ swappiness }}
       ansible.posix.sysctl:
         name: vm.swappiness
-        value: '{{ swappiness_value }}'
+        value: '{{ swappiness }}'
         state: present
       check_mode: true
       register: sysctl_swappiness
