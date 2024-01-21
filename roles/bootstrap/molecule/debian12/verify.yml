@@ -9,8 +9,8 @@
       ansible.builtin.include_vars:
         dir: '{{ item }}'
       loop:
-        - '../../defaults/'
-        - '../../vars/main'
+        - "{{ lookup('env', 'MOLECULE_PROJECT_DIRECTORY') }}/defaults/"
+        - "{{ lookup('env', 'MOLECULE_PROJECT_DIRECTORY') }}/vars/"
 
     - name: (DEBIAN) Check if some binaries are present
       ansible.builtin.stat:

@@ -1,2 +1,3 @@
 ---
 # defaults file for docker
+docker_user: mobyops

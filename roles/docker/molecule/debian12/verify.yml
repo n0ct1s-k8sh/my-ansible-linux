@@ -3,12 +3,35 @@
   hosts: all
   become: true
   tasks:
-    - name: (DEBIAN) Gather services
+    - name: Include role vars & defaults
+      ansible.builtin.include_vars:
+        dir: '{{ item }}'
+      loop:
+        - "{{ lookup('env', 'MOLECULE_PROJECT_DIRECTORY') }}/defaults/"
+        - "{{ lookup('env', 'MOLECULE_PROJECT_DIRECTORY') }}/vars/"
+
+    - name: Gather services
       ansible.builtin.service_facts:
 
-    - name: (DEBIAN) Check if Docker daemon exists
+    - name: Check if Docker daemon exists
       ansible.builtin.assert:
         that:
           - "'docker.service' in services"
-        fail_msg: "Docker daemon not installed :("
-        success_msg: "Docker daemon installed!!!"
+        fail_msg: "MISSING DOCKER DAEMON :("
+        success_msg: "DOCKER DAEMON IS PRESENT!!!"
+
+    - name: (OPUSER) User verification
+      block:
+        - name: (OPUSER) Check if Docker ops user exists
+          ansible.builtin.getent:
+            database: passwd
+            key: "{{ docker_user }}"
+
+        - name: (OPUSER) Check if Docker ops is in Docker group
+          ansible.builtin.user:
+            name: "{{ docker_user }}"
+            groups: "{{ docker_group }}"
+            append: true
+          check_mode: true
+          register: opuser_ingroup
+          failed_when: opuser_ingroup is changed or opuser_ingroup is failed

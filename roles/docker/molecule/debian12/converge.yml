@@ -2,11 +2,6 @@
 - name: Converge
   hosts: all
   gather_facts: true
-  pre_tasks:
-    - name: (DEBIAN) Install cryptography tools
-      ansible.builtin.apt:
-        name:
-          - ca-certificates
-          - gnupg
+  become: true
   roles:
     - docker

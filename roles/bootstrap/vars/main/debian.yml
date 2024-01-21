@@ -1,12 +1,13 @@
 ---
 debian_pkg:
   base:
+    - build-essential
     - linux-headers-amd64
     - dkms
     - firmware-linux
     - apt-transport-https
     - python3-all
-    - build-essential
+    - python3-pip
   net:
     - ncat
   compression:
