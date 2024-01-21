@@ -23,5 +23,3 @@ verifier:
   name: ansible
   env:
     ANSIBLE_CONFIG: /workspaces/my-ansible-linux/ansible.cfg
-lint: |
-  ansible-lint -c
