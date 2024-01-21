@@ -1,5 +1,14 @@
 ---
-- name: Call tasks for Debian host
+- name: (DEBIAN) Call tasks for Debian host
   ansible.builtin.include_tasks:
     file: debian.yml
   when: ansible_distribution == 'Debian'
+
+- name: (OPUSER) Create user for Docker ops
+  ansible.builtin.user:
+    name: "{{ docker_user }}"
+    groups: "{{ docker_group }}"
+    shell: /bin/bash
+    password: '!'     # Disabled pass by default
+    append: true
+    state: present

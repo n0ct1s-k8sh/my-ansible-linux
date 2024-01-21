@@ -3,18 +3,23 @@ role_name_check: 1
 dependency:
   name: galaxy
 driver:
-  name: docker
+  name: vagrant
+  provider:
+    name: libvirt
+  provision: no
+  parallel: false
 platforms:
   - name: ansiblinux-debian-12
-    image: ansiblinux:debian-12
-    pre_build_image: true
-    privileged: true
+    box: debian/bookworm64
+    cpus: 1
+    memory: 2048
+    provider_raw_config_args:
+      - cpu_mode = 'host-passthrough'
 provisioner:
   name: ansible
   env:
-    ANSIBLE_CONFIG: /workspaces/my-ansible-linux/ansible.cfg
-    # ANSIBLE_VERBOSITY: 3
+    ANSIBLE_CONFIG: ${MOLECULE_PROJECT_DIRECTORY}/../../ansible.cfg
 verifier:
   name: ansible
   env:
-    ANSIBLE_CONFIG: /workspaces/my-ansible-linux/ansible.cfg
+    ANSIBLE_CONFIG: ${MOLECULE_PROJECT_DIRECTORY}/../../ansible.cfg
