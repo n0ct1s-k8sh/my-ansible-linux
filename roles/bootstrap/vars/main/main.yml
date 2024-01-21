@@ -1,15 +1,15 @@
 ---
-dev_packages:
+pkg_base:
   - git
   - gnupg
   - neovim
   - curl
   - acl
-net_packages:
+pkg_net:
   - ethtool
   - traceroute
   - nmap
-hw_monitor_packages:
+pkg_hwmon:
   - htop
   - neofetch
   - s-tui
@@ -19,7 +19,7 @@ hw_monitor_packages:
   - hwdata
   - hwinfo
   - inxi
-compression_packages:
+pkg_compr:
   - zip
   - unzip
   - lzip
@@ -31,7 +31,12 @@ compression_packages:
   - lzma
   - arj
   - sharutils
+pkg_ntfs:
+  - ntfs-3g
 
 # https://github.com/systemd/zram-generator/blob/main/man/zram-generator.conf.md
 zram_filesystem: swap
 zram_config_file: /etc/systemd/zram-generator.conf
+zram_device: zram0
+zram_priority: 100
+zram_minimal_size: 8192

@@ -1,6 +1,6 @@
 ---
 # bootstrapping tasks file for Debian hosts
-- name: (DEBIAN) Deploy main APT repository config file
+- name: (DEBIAN - REPOS) Deploy main APT repository config file
   ansible.builtin.template:
     src: templates/etc/apt/sources.list.j2
     dest: /etc/apt/sources.list
@@ -9,49 +9,51 @@
     group: root
     backup: true
 
-- name: (DEBIAN) Upgrade all packages
+- name: (DEBIAN - UPGR) Upgrade all packages
   ansible.builtin.apt:
     update_cache: true
     upgrade: full
 
-- name: (DEBIAN) Install initial packages
-  ansible.builtin.apt:
-    name: "{{ debian_pkgs['initial'] }}"
+- name: (DEBIAN - PKGS) Packages installation
+  block:
+    - name: (DEBIAN - PKGS) Install initial packages
+      ansible.builtin.apt:
+        name: "{{ debian_pkg['base'] }}"
 
-- name: (DEBIAN) Install development packages
-  ansible.builtin.apt:
-    name: "{{ dev_packages }}"
+    - name: (DEBIAN - PKGS) Install development packages
+      ansible.builtin.apt:
+        name: "{{ pkg_base }}"
 
-- name: (DEBIAN - pkgs) Install network tools
-  ansible.builtin.apt:
-    name: "{{ item }}"
-    state: present
-  loop:
-    - "{{ net_packages }}"
-    - "{{ debian_pkgs['net'] }}"
+    - name: (DEBIAN - PKGS) Install network tools
+      ansible.builtin.apt:
+        name: "{{ item }}"
+        state: present
+      loop:
+        - "{{ pkg_net }}"
+        - "{{ debian_pkg['net'] }}"
 
-- name: (DEBIAN - pkgs) Install hardware info & monitoring tools
-  ansible.builtin.apt:
-    name: "{{ hw_monitor_packages }}"
-    state: present
+    - name: (DEBIAN - PKGS) Install hardware info & monitoring tools
+      ansible.builtin.apt:
+        name: "{{ pkg_hwmon }}"
+        state: present
 
-- name: (DEBIAN - pkgs) Install NTFS driver
-  ansible.builtin.apt:
-    name: ntfs-3g
-    state: present
+    - name: (DEBIAN - PKGS) Install NTFS driver
+      ansible.builtin.apt:
+        name: "{{ pkg_ntfs }}"
+        state: present
 
-- name: (DEBIAN - pkgs) Install file compression tools and format support
-  ansible.builtin.apt:
-    name: "{{ item }}"
-    state: present
-  loop:
-    - "{{ compression_packages }}"
-    - "{{ debian_pkgs['compression'] }}"
+    - name: (DEBIAN - PKGS) Install file compression tools and format support
+      ansible.builtin.apt:
+        name: "{{ item }}"
+        state: present
+      loop:
+        - "{{ pkg_compr }}"
+        - "{{ debian_pkg['compression'] }}"
 
-- name: (DEBIAN) Set swappiness value to "{{ swappiness_value }}"
+- name: (DEBIAN - SWAP) Set swappiness value to "{{ swappiness }}"
   ansible.posix.sysctl:
     name: vm.swappiness
-    value: "{{ swappiness_value }}"
+    value: "{{ swappiness }}"
     reload: true
     state: present
 

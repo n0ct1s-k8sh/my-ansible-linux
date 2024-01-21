@@ -1,6 +1,6 @@
 ---
-debian_pkgs:
-  initial:
+debian_pkg:
+  base:
     - linux-headers-amd64
     - dkms
     - firmware-linux
