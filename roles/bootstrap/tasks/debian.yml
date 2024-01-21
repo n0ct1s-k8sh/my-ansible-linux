@@ -8,8 +8,8 @@
     owner: root
     group: root
     backup: true
-  tags: molecule-idempotence-notest
-
+  tags:
+    - molecule-idempotence-notest
 
 - name: (DEBIAN - UPGR) Upgrade all packages
   ansible.builtin.apt:
