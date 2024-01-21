@@ -1,6 +1,7 @@
 # my-ansible-linux
 These are my handmade Ansible roles made for deploy a fully operational Linux environment for Desktop/Daily driver use or Server.
-# Roles
+
+## Roles
 - [**bootstrap**](roles/bootstrap) &rarr; Prepare a Linux environment for anything.
     - Configure the package manager.
     - Upgrade all packages.
@@ -24,8 +25,8 @@ These are my handmade Ansible roles made for deploy a fully operational Linux en
 - [**teamviewer**](roles/teamviewer) &rarr; Install [TeamViewer](https://www.teamviewer.com/).
 - [**mytools**](roles/mytools) &rarr; Install some tools and programs.
 
-# License
+## License
 This entire repository is licensed under the BSD license.
 
-# About me
+## About me
 Hi! I'm n0ct1s, a Junior Site Reliability Engineer, geek and tech enthusiast from Cartagena (Southeast Spain). Also I play the oboe as my main discipline in the Professional Music School of my city. I enjoy going for a walk to rest and disconnect as sometimes my mind needs to shut down like my production services.

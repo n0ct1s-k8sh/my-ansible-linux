@@ -1,6 +1,7 @@
 galaxy_info:
   role_name: bootstrap
   author: n0ct1s-k8sh
+  namespace: ansiblinux
   description: General & Essential Linux bootstraping role
   license: BSD-3-Clause
   min_ansible_version: 2.15.3

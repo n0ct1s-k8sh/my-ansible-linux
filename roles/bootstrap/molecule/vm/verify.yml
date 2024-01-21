@@ -1,0 +1,28 @@
+---
+- name: Verify
+  hosts: all
+  become: true
+  vars_files:
+    - vars.yml
+  tasks:
+    - name: Include role vars & defaults
+      ansible.builtin.include_vars:
+        dir: '{{ item }}'
+      loop:
+        - '../../defaults/'
+        - '../../vars/main'
+
+    - name: (DEBIAN) Check if some binaries are present
+      ansible.builtin.stat:
+        path: '{{ item }}'
+      loop:
+        - '{{ bin_testing }}'
+
+    - name: (DEBIAN) Check if swappiness value is set to {{ swappiness_value }}
+      ansible.posix.sysctl:
+        name: vm.swappiness
+        value: '{{ swappiness_value }}'
+        state: present
+      check_mode: true
+      register: sysctl_swappiness
+      failed_when: sysctl_swappiness is changed or sysctl_swappiness is failed
