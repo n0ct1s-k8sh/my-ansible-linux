@@ -1,6 +1,6 @@
 ---
 # tasks file for gnome
 - name: DEBIAN
-  ansible.builtin.include_tasks:
+  ansible.builtin.import_tasks:
     file: debian.yml
   when: ansible_distribution == 'Debian'
