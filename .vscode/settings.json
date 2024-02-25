@@ -1,10 +1,8 @@
 {
-    "yaml.schemas": {
-        "https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/ansible.json#/$defs/tasks": "file:///workspaces/my-ansible-linux/roles/bootstrap/tasks/debian.yml",
-        "https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/ansible.json#/$defs/playbook": "file:///workspaces/my-ansible-linux/test.yml"
-    },
     "python.defaultInterpreterPath": "${workspaceFolder}/.venv/bin/python3",
-    "ansible.python.interpreterPath": "/home/n0ct1s/GitHub/my-ansible-linux/.venv/bin/python",
+    // https://github.com/ansible/vscode-ansible/issues/900#issuecomment-1919085517
+    "ansible.python.interpreterPath": "python",
+    "python.terminal.activateEnvironment": true,
     "files.associations": {
         "roles/**/**/*.yml": "ansible",
         "launch.yml": "ansible"
