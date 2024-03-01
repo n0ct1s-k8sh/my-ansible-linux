@@ -1,0 +1,29 @@
+---
+pihole_name: "pihole_{{ pihole_stage }}"
+pihole_path: "/home/{{ pihole_user }}/docker/{{ pihole_name }}"
+pihole_container_name: "{{ pihole_name }}"
+
+pihole_container_caps:
+  - CAP_NET_BIND_SERVICE
+  - CAP_SYS_NICE
+
+pihole_image_name: pihole/pihole
+pihole_image_uri: "{{ pihole_image_name }}:{{ pihole_image_version }}"
+
+pihole_container_mem_min: 50    # Always in MiB
+pihole_container_cpu_min: 0.25
+
+pihole_network_name: "{{ pihole_name }}_net"
+pihole_int_dns_port: 53         # Both TCP & UDP
+pihole_int_http_port: 80
+
+pihole_data_dir: data
+pihole_dnsmasq_dir: dnsmasq.d
+pihole_container_data_dir: /etc/pihole
+pihole_container_dnsmasq_dir: /etc/dnsmasq.d
+
+pihole_container_tz: "{{ ansible_date_time['tz'] }}"
+
+pihole_host_ip: "{{ ansible_default_ipv4['address'] }}"
+
+pihole_container_restart: unless-stopped

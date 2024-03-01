@@ -1,0 +1,10 @@
+---
+## Provided as extra vars         
+pihole_stage: "{{ stage }}"
+pihole_image_version: "{{ version }}"
+pihole_user: "{{ user }}"
+pihole_group: "{{ group | default(user) }}"   # By default group is same as user
+pihole_container_mem_max: "{{ mem_limit | default(200) | int }}"
+pihole_container_cpu_max: "{{ cpu_limit | default('1.5') }}"
+pihole_ext_dns_port: "{{ dns_port | default(53) | int }}"
+pihole_ext_http_port: "{{ console_port | default(8080) | int }}"

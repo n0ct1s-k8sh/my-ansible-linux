@@ -1,0 +1,25 @@
+---
+- name: (DEPLOY - ENV) Configure env vars
+  ansible.builtin.template:
+    src: env.j2
+    dest: "{{ pihole_path }}/.env"
+    owner: "{{ pihole_user }}"
+    group: "{{ pihole_group }}"
+    mode: '0640'
+    backup: true
+
+- name: (DEPLOY - CONTAINER) Configure compose manifest
+  ansible.builtin.template:
+    src: docker-compose.yml.j2
+    dest: "{{ pihole_path }}/docker-compose.yml"
+    owner: "{{ pihole_user }}"
+    group: "{{ pihole_group }}"
+    mode: '0640'
+    backup: true
+
+- name: (DEPLOY - CONTAINER) ROCKET LAUNCHER!!!
+  community.docker.docker_compose:
+    project_src: "{{ pihole_path }}"
+    project_name: "{{ pihole_name }}"
+    pull: true
+    state: present

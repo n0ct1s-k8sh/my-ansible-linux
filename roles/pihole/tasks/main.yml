@@ -1,0 +1,30 @@
+---
+- name: (PREPARE) Call environment prepare tasks
+  ansible.builtin.import_tasks:
+    file: prepare.yml
+
+- name: (PROVISION) Create dir for stack
+  ansible.builtin.file:
+    path: "{{ pihole_path }}"
+    owner: "{{ pihole_user }}"
+    group: "{{ pihole_group }}"
+    mode: '0750'
+    recurse: true
+    state: directory
+
+- name: (DEPLOY) Call deployment tasks
+  ansible.builtin.include_tasks:
+    file: deploy.yml
+    apply:
+      become_user: "{{ pihole_user }}"
+
+- name: (TEST) Test Pi-hole status
+  ansible.builtin.uri:
+    url: "http://{{ pihole_host_ip }}:{{ pihole_ext_http_port }}/admin/api.php?status"
+    method: GET
+    status_code: 200
+    timeout: 10
+  register: _pihole_test
+  until: _pihole_test['status'] == 200
+  retries: 3
+  delay: 3

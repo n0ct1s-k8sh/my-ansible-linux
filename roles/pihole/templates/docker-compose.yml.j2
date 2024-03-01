@@ -1,0 +1,33 @@
+# {{ ansible_managed }}
+version: '3'
+services:
+  pihole:
+    container_name: {{ pihole_container_name }}
+    image: {{ pihole_image_uri }}
+    deploy:
+      resources:
+        limits:
+          memory: '{{ pihole_container_mem_max }}M'
+          cpus: '{{ pihole_container_cpu_max }}'
+        reservations:
+          memory: '{{ pihole_container_mem_min }}M'
+          cpus: '{{ pihole_container_cpu_min }}'
+    ports:
+      - {{ pihole_ext_dns_port }}:{{ pihole_int_dns_port }}/tcp
+      - {{ pihole_ext_dns_port }}:{{ pihole_int_dns_port }}/udp
+      - {{ pihole_ext_http_port }}:{{ pihole_int_http_port }}/tcp
+    env_file:
+      - .env
+    volumes:
+      - ./{{ pihole_data_dir }}:{{ pihole_container_data_dir }}
+      - ./{{ pihole_dnsmasq_dir }}:{{ pihole_container_dnsmasq_dir }}
+    cap_add:
+{% for cap in pihole_container_caps %}
+      - {{ cap }}
+{% endfor %}
+    logging:
+      driver: "json-file"
+      options:
+        max-file: "4"
+        max-size: "10m"
+    restart: {{ pihole_container_restart }}
