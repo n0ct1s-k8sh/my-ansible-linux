@@ -1,7 +1,7 @@
 ---
-- name: init-zram-device
+- name: Start zRAM
   ansible.builtin.systemd:
-    name: 'systemd-zram-setup@{{ zram.device_name }}'
+    name: "systemd-zram-setup@{{ bootstrap_zram['device'] }}"
     enabled: true
     state: started
     daemon_reload: true

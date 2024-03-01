@@ -1,5 +1,45 @@
 ---
-- name: (DEBIAN) Call tasks for Debian host
+- name: (DEBIAN) Call tasks for Debian hosts
   ansible.builtin.import_tasks:
     file: debian.yml
   when: ansible_distribution == 'Debian'
+
+- name: (PACKAGES) Install mandatory packages
+  ansible.builtin.package:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - "{{ bootstrap_pkgs['base'] }}"
+    - "{{ bootstrap_pkgs['net'] }}"
+    - "{{ bootstrap_pkgs['hwmon'] }}"
+    - "{{ bootstrap_pkgs['compression'] }}"
+    - "{{ bootstrap_pkgs['ntfs'] }}"
+    - "{{ bootstrap_pkgs['zram'] }}"
+
+- name: (SWAPPINESS) Set swappiness
+  ansible.posix.sysctl:
+    name: vm.swappiness
+    value: "{{ bootstrap_swappiness }}"
+    reload: true
+    state: present
+
+- name: (zRAM) zRAM Configuration
+  notify: "Start zRAM"
+  block:
+    - name: (zRAM - MOD) Load kernel module
+      community.general.modprobe:
+        name: zram
+        persistent: present
+        state: present
+
+    - name: (zRAM - CFG) Deploy config file
+      ansible.builtin.template:
+        src: templates/etc/systemd/zram-generator.conf.j2
+        dest: "{{ bootstrap_zram['cfg_file'] }}"
+        mode: '0644'
+        owner: root
+        group: root
+        backup: true
+
+- name: (META) Run pending hanlders
+  ansible.builtin.meta: flush_handlers

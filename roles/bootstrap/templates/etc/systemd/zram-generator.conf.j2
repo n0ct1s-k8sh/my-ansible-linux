@@ -1,8 +1,8 @@
 ## {{ ansible_managed }}
 # See /usr/share/doc/systemd-zram-generator/zram-generator.conf.example
 # and/or zram-generator.conf(5) for a list of available options.
-[{{ zram_device }}]
-zram-size = min(ram / 2, {{ zram_minimal_size }})
-compression-algorithm = {{ zram_compression }}
-fs-type = {{ zram_filesystem }}
-swap-priority = {{ zram_priority }}
+[{{ bootstrap_zram['device'] }}]
+zram-size = min(ram / 2, {{ bootstrap_zram['min_size'] }})
+compression-algorithm = {{ bootstrap_zram['compression'] }}
+fs-type = {{ bootstrap_zram['fs'] }}
+swap-priority = {{ bootstrap_zram['priority'] }}

@@ -1,5 +1,4 @@
 ---
-# debian12 testing vars
 pkg_bins:
   - '/usr/bin/git'
   - '/usr/bin/neovim'

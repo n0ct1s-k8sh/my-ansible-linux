@@ -6,7 +6,7 @@ driver:
   name: vagrant
   provider:
     name: libvirt
-  provision: no
+  provision: false
   parallel: false
 platforms:
   - name: ansiblinux-debian-12

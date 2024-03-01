@@ -7,21 +7,21 @@
   tasks:
     - name: Include role vars & defaults
       ansible.builtin.include_vars:
-        dir: '{{ item }}'
+        dir: "{{ item }}"
       loop:
         - "{{ lookup('env', 'MOLECULE_PROJECT_DIRECTORY') }}/defaults/"
         - "{{ lookup('env', 'MOLECULE_PROJECT_DIRECTORY') }}/vars/"
 
     - name: (DEBIAN) Check if some binaries are present
       ansible.builtin.stat:
-        path: '{{ item }}'
+        path: "{{ item }}"
       loop:
-        - '{{ pkg_bins }}'
+        - "{{ pkg_bins }}"
 
-    - name: (DEBIAN) Check if swappiness value is set to {{ swappiness }}
+    - name: (DEBIAN) Check if swappiness is configured properly
       ansible.posix.sysctl:
         name: vm.swappiness
-        value: '{{ swappiness }}'
+        value: "{{ bootstrap_swappiness }}"
         state: present
       check_mode: true
       register: sysctl_swappiness

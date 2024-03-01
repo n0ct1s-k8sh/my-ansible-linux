@@ -1,42 +1,44 @@
 ---
-pkg_base:
-  - git
-  - gnupg
-  - neovim
-  - curl
-  - acl
-pkg_net:
-  - ethtool
-  - traceroute
-  - nmap
-pkg_hwmon:
-  - htop
-  - neofetch
-  - s-tui
-  - lm-sensors
-  - lsb-release
-  - lshw
-  - hwdata
-  - hwinfo
-  - inxi
-pkg_compr:
-  - zip
-  - unzip
-  - lzip
-  - lzop
-  - bzip2
-  - tar
-  - gzip
-  - lhasa
-  - lzma
-  - arj
-  - sharutils
-pkg_ntfs:
-  - ntfs-3g
-
+bootstrap_pkgs:
+  base:
+    - git
+    - gnupg
+    - neovim
+    - curl
+    - acl
+  net:
+    - ethtool
+    - traceroute
+    - nmap
+  hwmon:
+    - htop
+    - neofetch
+    - s-tui
+    - lm-sensors
+    - lsb-release
+    - lshw
+    - hwdata
+    - hwinfo
+    - inxi
+  compression:
+    - zip
+    - unzip
+    - lzip
+    - lzop
+    - bzip2
+    - tar
+    - gzip
+    - lhasa
+    - lzma
+    - arj
+    - sharutils
+  ntfs: ntfs-3g
+  zram: systemd-zram-generator
 # https://github.com/systemd/zram-generator/blob/main/man/zram-generator.conf.md
-zram_filesystem: swap
-zram_config_file: /etc/systemd/zram-generator.conf
-zram_device: zram0
-zram_priority: 100
-zram_minimal_size: 8192
+bootstrap_zram:
+  fs: swap
+  cfg_file: /etc/systemd/zram-generator.conf
+  device: zram0
+  priority: 100
+  min_size: 8192
+  compression: lzo-rle

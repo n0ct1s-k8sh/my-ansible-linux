@@ -1,3 +1,2 @@
 ---
-swappiness: 10
-zram_compression: lzo-rle
+bootstrap_swappiness: 10
