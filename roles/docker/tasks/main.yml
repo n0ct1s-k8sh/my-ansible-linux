@@ -1,10 +1,20 @@
 ---
-- name: (DEBIAN) Call tasks for Debian host
-  ansible.builtin.import_tasks:
-    file: debian.yml
+- name: (DEBIAN) Docker repo config in Debian hosts
   when: ansible_distribution == 'Debian'
+  ansible.builtin.include_tasks:
+    file: debian.yml
 
-- name: (OPUSER) Create user for Docker ops
+- name: (PACKAGES) Install Docker
+  ansible.builtin.package:
+    name: "{{ docker_pkgs }}"
+    state: present
+
+- name: (PYLIBS) Install Docker Python libs
+  ansible.builtin.package:
+    name: "{{ docker_python_libs }}"
+    state: present
+
+- name: (OPUSER) Create user for Docker ops (without password)
   ansible.builtin.user:
     name: "{{ docker_user }}"
     groups: "{{ docker_group }}"

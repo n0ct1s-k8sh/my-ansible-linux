@@ -1,39 +1,25 @@
 ---
 - name: (DEBIAN - DPKG) Get dpkg architecture
-  set_fact:
+  ansible.builtin.set_fact:
     dpkg_arch: "{{ 'amd64' if ansible_architecture == 'x86_64' else ansible_architecture }}"
 
-- name: (DEBIAN - REPO) Docker repo configuration
-  block:
-    - name: (DEBIAN - REPO) Ensure that APT keyrings directory exists
-      ansible.builtin.file:
-        path: "{{ docker_repo_key_dir['debian'] }}"
-        owner: root
-        group: root
-        mode: '0755'
-        state: directory
+- name: (DEBIAN - REPO) Ensure that APT keyrings directory exists
+  ansible.builtin.file:
+    path: "{{ docker_repo_key_dir['debian'] }}"
+    owner: root
+    group: root
+    mode: '0755'
+    state: directory
 
-    - name: (DEBIAN - REPO) Fetch repo key
-      ansible.builtin.apt_key:
-        url: "{{ docker_repo_key_url['debian'] }}"
-        keyring: "{{ docker_repo_key_dir['debian'] }}/{{ docker_repo_key_file }}"
-        state: present
-
-    - name: (DEBIAN - REPO) Add Docker repo
-      ansible.builtin.apt_repository:
-        repo: "deb [arch={{ dpkg_arch }} signed-by={{ docker_repo_key_dir['debian'] }}/{{ docker_repo_key_file }}] {{ docker_repo_url['debian'] }} {{ ansible_distribution_release }} stable"
-        filename: docker
-        update_cache: true
-        state: present
-
-- name: (DEBIAN - PKG) Install Docker packages
-  ansible.builtin.apt:
-    name: "{{ docker_pkgs }}"
+- name: (DEBIAN - REPO) Fetch repo key
+  ansible.builtin.apt_key:
+    url: "{{ docker_repo_key_url['debian'] }}"
+    keyring: "{{ docker_repo_key_dir['debian'] }}/{{ docker_repo_key_file }}"
     state: present
-  tags:
-    - molecule-idempotence-notest
 
-- name: (DEBIAN - PY) Install Docker Python libraries
-  ansible.builtin.apt:
-    name: "{{ docker_python_libs['debian'] }}"
+- name: (DEBIAN - REPO) Add Docker repo
+  ansible.builtin.apt_repository:
+    repo: "deb [arch={{ dpkg_arch }} signed-by={{ docker_repo_key_dir['debian'] }}/{{ docker_repo_key_file }}] {{ docker_repo_url['debian'] }} {{ ansible_distribution_release }} stable"
+    filename: docker
+    update_cache: true
     state: present
