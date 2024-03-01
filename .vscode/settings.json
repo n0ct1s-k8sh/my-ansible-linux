@@ -1,10 +1,16 @@
 {
-    "python.defaultInterpreterPath": "${workspaceFolder}/.venv/bin/python3",
+    "python.defaultInterpreterPath": "${env:VIRTUAL_ENV}",
     // https://github.com/ansible/vscode-ansible/issues/900#issuecomment-1919085517
-    "ansible.python.interpreterPath": "python",
-    "python.terminal.activateEnvironment": true,
+    "ansible.python.interpreterPath": ".venv/bin/python",
     "files.associations": {
-        "roles/**/**/*.yml": "ansible",
-        "launch.yml": "ansible"
+        "**/defaults/**/*.yml": "jinja-yaml",
+        "**/vars/**/*.yml": "jinja-yaml",
+        "**/tasks/**/*.yml": "ansible",
+        "**/molecule/**/*.yml": "ansible",
+        "**/handlers/*.yml": "ansible",
+        "**/meta/*.yml": "ansible",
+        "**/roles/**/*.yml": "ansible",
+        "ansible.cfg": "ini",
+        "run.yml": "ansible"
     }
 }
