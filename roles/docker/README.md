@@ -24,7 +24,8 @@ Role Variables
   - `debian` (str)
 - `docker_repo_key_file` (str) &rarr; Docker repository key file for dearmored output.
 - `docker_pkgs` (list) &rarr; Docker repo packages to install.
-- `docker_python_libs` (list) &rarr; Docker Python libraries to install for future deployments with Ansible modules.
+- `docker_python_libs` (list) &rarr; Docker Python libraries to install.
+- `docker_python_pkgs` (list) &rarr; Python pip packages to install for Ansible Docker modules compatibility.
 
 Example Playbook
 ----------------

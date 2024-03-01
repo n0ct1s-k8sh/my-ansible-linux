@@ -16,3 +16,6 @@ docker_pkgs:
 docker_python_libs:
   - python3-docker
   - python3-yaml
+docker_python_pkgs:
+  - docker-compose
+  - PyYAML==5.3.1   # https://github.com/geerlingguy/ansible-role-pip/issues/59
